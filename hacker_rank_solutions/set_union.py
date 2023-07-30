@@ -1,0 +1,5 @@
+n = int(input())
+set_one = set(map(int, input().split(" ")[:n]))
+m = int(input())
+set_two = set(map(int, input().split(" ")[:m]))
+print(len(set_two.union(set_one)))
