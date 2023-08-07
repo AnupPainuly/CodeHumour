@@ -1,5 +1,5 @@
 '''
-finding the missing number from an array
+Finding the missing number from an array
 Intuition: sum of n natural numbers ```n*(n+1) // 2```
 
 '''
