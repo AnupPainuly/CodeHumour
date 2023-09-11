@@ -35,20 +35,17 @@ Explanation:
 In 2015-01-02, the temperature was higher than the previous day (10 -> 25).
 In 2015-01-04, the temperature was higher than the previous day (20 -> 30).
 
-
-
 */
-select 
-  id as ID 
-from 
-  (
-    select 
-      id, 
-      temperature, 
-      lag(temperature, 1) over() as prev_temp 
-    from 
-      Weather
-  ) as sub 
-where 
-  temperature > prev_temp
+# Write your MySQL query statement below
+with CTE as (
+    select id,
+        recordDate,
+        temperature,
+        lag(temperature, 1) over(order by recordDate) as prev_temp,
+        lag(recordDate) over(order by recordDate) as prev_date
+    from Weather
+)
+select id as ID
+from CTE
+where temperature > prev_temp and datediff(recordDate, prev_date) = 1
 
